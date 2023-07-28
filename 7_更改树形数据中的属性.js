@@ -25,13 +25,22 @@ const tree = [
   },
 ];
 
-function transformPro(tree, pre, cur) {
+// function transformPro(tree, pre, cur) {
+//   tree.forEach((item) => {
+//     item[cur] = item[pre];
+//     delete item[pre];
+//     item.children && transformPro(item.children);
+//   });
+//   return tree;
+// }
+
+function transformProps(tree, pre, cur) {
   tree.forEach((item) => {
     item[cur] = item[pre];
     delete item[pre];
-    item.children && transformPro(item.children);
+    item.children && transformProps(item.children, pre, cur);
   });
   return tree;
 }
 
-console.log(transformPro(tree, "name", "text"));
+console.log(transformProps(tree, "name", "text"));

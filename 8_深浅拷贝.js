@@ -46,22 +46,17 @@ const dgObj = {
   d: /^\d+$/,
 };
 
-function dgDeepClone(obj) {
-  if (obj === null) {
-    return null;
-  }
-  if (typeof obj !== "object") {
-    return obj;
-  }
-  if (typeof obj === "function") {
-    return new Function(obj);
-  }
-  if (obj instanceof RegExp) {
-    return new RegExp(obj);
-  }
-  if (obj instanceof Date) {
-    return new Date(obj);
-  }
+const dgDeepClone = (obj) => {
+  if (obj === null) return null;
+
+  if (typeof obj !== "object") return obj;
+
+  if (typeof obj === "function") return new Function(obj);
+
+  if (obj instanceof RegExp) return new RegExp(obj);
+
+  if (obj instanceof Date) return new Date(obj);
+
   const res = new obj.constructor();
   for (let item in obj) {
     if (obj.hasOwnProperty(item)) {
@@ -69,6 +64,6 @@ function dgDeepClone(obj) {
     }
   }
   return res;
-}
+};
 
-console.log(dgDeepClone(dgObj));
+console.log(dgDeepClone(dgObj), "oo");

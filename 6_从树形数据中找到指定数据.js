@@ -26,24 +26,18 @@ const tree = [
 ];
 
 function getTarget(tree, id) {
-  const listArr = [];
-  function treeToList(tree) {
-    tree.forEach((item) => {
+  const listDate = [];
+  const treeToList = (treeDate) => {
+    treeDate.forEach((item) => {
       if (item.children) {
         treeToList(item.children);
         delete item.children;
       }
-      listArr.push(item);
+      listDate.push(item);
     });
-    return listArr;
-  }
+  };
   treeToList(tree);
-  const res = listArr.filter((item) => {
-    if (item.id === id) {
-      return true;
-    }
-  });
-  return res;
+  return listDate.filter((item) => item.id === id);
 }
 
 console.log(getTarget(tree, 5));

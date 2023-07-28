@@ -6,26 +6,25 @@ const data = [
   { id: 35, parentId: 30, text: "三级菜单-35" },
 ];
 
-function listToTree(data) {
-  const listInfo = data.reduce((preData, curNode) => {
-    preData[curNode.id] = curNode;
-    return preData;
+const listToTree = (data) => {
+  const res = [];
+  const listInfo = data.reduce((preInfo, curNode) => {
+    preInfo[curNode.id] = curNode;
+    return preInfo;
   }, {});
 
-  const res = [];
-
-  data.forEach((nodeItem) => {
-    if (!nodeItem.parentId) {
-      res.push(nodeItem);
+  data.forEach((itemNode) => {
+    if (!itemNode.parentId) {
+      res.push(itemNode);
       return;
     }
 
-    parentInfo = listInfo[nodeItem.parentId];
+    parentInfo = listInfo[itemNode.parentId];
     parentInfo.children = parentInfo.children || [];
-    parentInfo.children.push(nodeItem);
+    parentInfo.children = itemNode;
   });
 
   return res;
-}
+};
 
 console.log(listToTree(data));

@@ -9,7 +9,6 @@ const arr = [
 console.log(arr.flat(Infinity), "flat");
 
 //字符串
-arr.toString;
 function flatStr(arr) {
   const strArr = arr.toString().split(",");
   return strArr.map((item) => {
@@ -17,13 +16,13 @@ function flatStr(arr) {
   });
 }
 
-console.log(flatStr(arr), "字符串");
-[].concat;
+console.log(flatStr(arr), "字符串1");
 
 // 递归
+
 function myFlat(arr) {
   return arr.reduce((pre, cur) => {
-    return pre.concat(Array.isArray(cur) ? myFlat(cur) : cur);
+    return Array.isArray(cur) ? pre.concat(myFlat(cur)) : pre.concat(cur);
   }, []);
 }
 

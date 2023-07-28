@@ -56,15 +56,27 @@ console.log(format4("Asss7bbbb"));
 console.log("===================");
 
 //URL中query参数的获取
+// function getQuery(url) {
+//   const regExp = /[?#&][^?#&]+=[^?#&]/g;
+//   const strArr = url.match(regExp);
+//   const res = [];
+//   strArr.forEach((item) => {
+//     const content = item.slice(1).split("=");
+//     res[content[0]] = content[1];
+//   });
+//   return res;
+// }
+
 function getQuery(url) {
-  const regExp = /[?#&][^?#&]+=[^?#&]/g;
-  const strArr = url.match(regExp);
+  const regExp = /[?&#][^?&#]+=[^?&#]/g;
+  const matchInfo = url.match(regExp);
   const res = [];
-  strArr.forEach((item) => {
-    const content = item.slice(1).split("=");
-    res[content[0]] = content[1];
+  matchInfo.forEach((item) => {
+    const info = item.slice(1).split("=");
+    res[info[0]] = info[1];
   });
   return res;
 }
+
 const url = "https://www.baidu.com/?a=1&b=2&c=3#d=5";
 console.log(getQuery(url));
