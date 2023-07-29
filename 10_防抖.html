@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button id="btn">付款</button>
+    <script>
+      let button = document.getElementById("btn");
+
+      function payMoney() {
+        console.log("已剁手");
+      }
+
+      function debounce(func, delay) {
+        let timer;
+        return function (a, b) {
+          let context = this,
+            arg = arguments;
+          clearTimeout(timer);
+          //箭头函数中的this指向他定义时候的环境，而不是他运行时候的环境
+          timer = setTimeout(() => {
+            func.apply(context, arg);
+          }, delay);
+        };
+      }
+
+      button.addEventListener("click", debounce(payMoney, 1000));
+    </script>
+  </body>
+</html>
