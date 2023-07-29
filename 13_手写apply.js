@@ -19,6 +19,7 @@ console.log(applyFn.apply(applyObj, [1, 2, 3, 4]));
 Function.prototype.myApply = function (context) {
   if (typeof this !== "function") {
     console.error("Not function");
+    return;
   }
 
   context = context || globalThis;

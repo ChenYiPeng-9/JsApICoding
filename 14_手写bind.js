@@ -20,6 +20,7 @@ console.log(new test(), "原生构造函数");
 Function.prototype.myBind = function (context) {
   if (typeof this !== "function") {
     console.error("Not Function");
+    return;
   }
 
   context = context || globalThis;

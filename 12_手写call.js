@@ -13,6 +13,7 @@ console.log(callFn.call(callObj, 1), "原生");
 Function.prototype.myCall = function (context) {
   if (typeof this !== "function") {
     console.error("Not Function");
+    return;
   }
 
   context = context || globalThis;
