@@ -7,24 +7,24 @@ const data = [
 ];
 
 const listToTree = (data) => {
-  const res = [];
-  const listInfo = data.reduce((preInfo, curNode) => {
-    preInfo[curNode.id] = curNode;
-    return preInfo;
+  const listInfo = data.reduce((preData, curNode) => {
+    preData[curNode.id] = curNode;
+    return preData;
   }, {});
 
+  const treeResult = [];
   data.forEach((itemNode) => {
     if (!itemNode.parentId) {
-      res.push(itemNode);
+      treeResult.push(itemNode);
       return;
     }
 
     parentInfo = listInfo[itemNode.parentId];
     parentInfo.children = parentInfo.children || [];
+
     parentInfo.children = itemNode;
   });
 
-  return res;
+  return treeResult;
 };
-
 console.log(listToTree(data));
