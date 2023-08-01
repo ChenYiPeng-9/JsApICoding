@@ -1,12 +1,14 @@
 // 柯里化一般形式
 
-function curry(fn, ...outArgs) {
-  return function (...inArgs) {
-    const args = [...outArgs, ...inArgs];
-    if (args.length >= fn.length) {
-      return fn(...args);
+function curry(fn, ...args1) {
+  const argsResult = [...args1];
+
+  return function (...args2) {
+    argsResult.push(...args2);
+    if (argsResult.length >= fn.length) {
+      return fn(...argsResult);
     } else {
-      return curry(fn, ...args);
+      return curry(fn, ...argsResult);
     }
   };
 }
